@@ -1,0 +1,20 @@
+name: Deploy to FTP
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+      
+    - name: Deploy to FTP
+      uses: w3tecch/deploy-php-action@v2
+      with:
+        server: ${{ secrets.FTP_SERVER }}
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        local_dir: C:\xampp\htdocs\Learning_Laravel # De lokale map die je wilt uploaden naar FTP
